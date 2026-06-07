@@ -1,40 +1,40 @@
-# Detección de Logos Reales y Falsos con Inteligencia Artificial
+# Detecção de Logos Reais e Falsos com Inteligência Artificial
 
-Este proyecto tiene como objetivo entrenar un modelo de Inteligencia Artificial capaz de clasificar imágenes de logos como **reales** o **falsos** utilizando Python, Google Colab, TensorFlow/Keras y un dataset de Kaggle.
+Este projeto tem como objetivo treinar um modelo de Inteligência Artificial capaz de classificar imagens de logos como **reais** ou **falsos** utilizando Python, Google Colab, TensorFlow/Keras e um dataset do Kaggle.
 
-El proyecto fue desarrollado como parte de una actividad académica enfocada en el entrenamiento de modelos de IA en Google Colab, con énfasis en la documentación del proceso, el análisis de los resultados y la identificación de las limitaciones del modelo.
+O projeto foi desenvolvido como parte de uma atividade acadêmica voltada ao treinamento de modelos de IA em ambiente Google Colab, com foco na documentação do processo, análise dos resultados e identificação das limitações do modelo.
 
 ---
 
-## Objetivo del Proyecto
+## Objetivo do Projeto
 
-El objetivo principal de este proyecto es crear un modelo de clasificación binaria para analizar imágenes de logos y clasificarlas en dos categorías:
+O objetivo principal deste projeto é criar um modelo de classificação binária para analisar imagens de logos e classificá-las em duas categorias:
 
-* **Real**: logos considerados reales u originales dentro del dataset.
-* **Fake**: logos considerados falsos o generados dentro del dataset.
+* **Real**: logos considerados reais/originais dentro do dataset.
+* **Fake**: logos considerados falsos ou gerados dentro do dataset.
 
-La propuesta no es crear un verificador oficial de autenticidad de marcas, sino entrenar un modelo capaz de aprender patrones visuales a partir de un conjunto de datos previamente etiquetado.
+A proposta não é criar um verificador oficial de autenticidade de marcas, mas sim treinar um modelo capaz de aprender padrões visuais a partir de um conjunto de dados previamente rotulado.
 
 ---
 
 ## Dataset Utilizado
 
-El dataset utilizado fue **Fake/Real Logo Detection Dataset**, disponible en Kaggle.
+O dataset utilizado foi o **Fake/Real Logo Detection Dataset**, disponível no Kaggle.
 
-Enlace del dataset:
+Link do dataset:
 
 ```text
 https://www.kaggle.com/datasets/prosperchuks/fakereal-logo-detection-dataset
 ```
 
-Durante el análisis de la estructura de los archivos, se identificaron dos carpetas principales:
+Durante a análise da estrutura dos arquivos, foram identificadas duas pastas principais:
 
 ```text
 genLogoOutput/
 output/
 ```
 
-Para el desarrollo del modelo, esas carpetas fueron reorganizadas de la siguiente manera:
+Para o desenvolvimento do modelo, essas pastas foram reorganizadas da seguinte forma:
 
 ```text
 dataset_final/
@@ -42,18 +42,18 @@ dataset_final/
   real/
 ```
 
-La cantidad final de imágenes quedó así:
+A quantidade final de imagens ficou assim:
 
 ```text
-fake: 550 imágenes
-real: 275 imágenes
+fake: 550 imagens
+real: 275 imagens
 ```
 
-Esto muestra que el dataset está desbalanceado, ya que posee más ejemplos de la clase `fake` que de la clase `real`.
+Isso mostra que o dataset é desbalanceado, pois possui mais exemplos da classe `fake` do que da classe `real`.
 
 ---
 
-## Tecnologías Utilizadas
+## Tecnologias Utilizadas
 
 * Python
 * Google Colab
@@ -66,17 +66,17 @@ Esto muestra que el dataset está desbalanceado, ya que posee más ejemplos de l
 
 ---
 
-## Etapas del Proyecto
+## Etapas do Projeto
 
-### 1. Descarga del Dataset
+### 1. Download do Dataset
 
-El dataset fue descargado directamente desde Kaggle utilizando la API de Kaggle en Google Colab.
+O dataset foi baixado diretamente do Kaggle utilizando a API do Kaggle no Google Colab.
 
 ```python
 !kaggle datasets download -d prosperchuks/fakereal-logo-detection-dataset
 ```
 
-Luego, el archivo fue descomprimido:
+Depois, o arquivo foi descompactado:
 
 ```python
 !unzip fakereal-logo-detection-dataset.zip -d logos_dataset
@@ -84,160 +84,160 @@ Luego, el archivo fue descomprimido:
 
 ---
 
-### 2. Organización de los Datos
+### 2. Organização dos Dados
 
-Las imágenes fueron reorganizadas en dos clases principales:
+As imagens foram reorganizadas em duas classes principais:
 
 ```text
 fake
 real
 ```
 
-Esta organización facilitó la carga de las imágenes mediante TensorFlow.
+Essa organização facilitou o carregamento das imagens pelo TensorFlow.
 
 ---
 
-### 3. Preprocesamiento de las Imágenes
+### 3. Pré-processamento das Imagens
 
-Las imágenes fueron redimensionadas a:
+As imagens foram redimensionadas para:
 
 ```text
-70x70 píxeles
+70x70 pixels
 ```
 
-Este tamaño fue utilizado para reducir el costo computacional y facilitar el entrenamiento del modelo en Google Colab.
+Esse tamanho foi utilizado para reduzir o custo computacional e facilitar o treinamento do modelo no Google Colab.
 
-También se realizó la separación automática de los datos en:
-
-```text
-80% para entrenamiento
-20% para validación
-```
-
----
-
-### 4. Creación del Modelo
-
-Se creó un modelo de red neuronal convolucional, también conocido como **CNN**.
-
-Este tipo de modelo es ampliamente utilizado en problemas de visión computacional, ya que permite analizar patrones visuales en imágenes, como formas, bordes, colores y estructuras.
-
-La arquitectura utilizada estuvo compuesta por:
-
-* Capa de normalización de píxeles.
-* Capas convolucionales.
-* Capas de pooling.
-* Capa flatten.
-* Capa densa.
-* Capa de salida con activación sigmoid.
-
-La salida del modelo corresponde a una clasificación binaria:
+Também foi feita a separação automática dos dados em:
 
 ```text
-real o fake
+80% para treinamento
+20% para validação
 ```
 
 ---
 
-## Entrenamiento
+### 4. Criação do Modelo
 
-El modelo fue entrenado durante 10 épocas.
+Foi criado um modelo de rede neural convolucional, também conhecido como **CNN**.
 
-Resultado aproximado obtenido:
+Esse tipo de modelo é bastante utilizado em problemas de visão computacional, pois consegue analisar padrões visuais em imagens, como formas, bordas, cores e estruturas.
+
+A arquitetura utilizada foi composta por:
+
+* Camada de normalização dos pixels.
+* Camadas convolucionais.
+* Camadas de pooling.
+* Camada flatten.
+* Camada densa.
+* Camada de saída com ativação sigmoid.
+
+A saída do modelo retorna uma classificação binária:
 
 ```text
-Precisión de entrenamiento: 89%
-Precisión de validación: 90%
+real ou fake
 ```
-
-Estos resultados indican que el modelo tuvo un buen desempeño general dentro del conjunto de validación.
 
 ---
 
-## Matriz de Confusión
+## Treinamento
 
-La matriz de confusión mostró que el modelo tuvo un mejor desempeño al identificar logos falsos que logos reales.
+O modelo foi treinado por 10 épocas.
+
+Resultado aproximado obtido:
+
+```text
+Acurácia de treinamento: 89%
+Acurácia de validação: 90%
+```
+
+Esses resultados indicam que o modelo teve um bom desempenho geral dentro do conjunto de validação.
+
+---
+
+## Matriz de Confusão
+
+A matriz de confusão mostrou que o modelo teve um desempenho melhor ao identificar logos falsos do que logos reais.
 
 Resultado observado:
 
 ```text
-121 logos fake clasificados correctamente como fake.
-0 logos fake clasificados incorrectamente como real.
+121 logos fake classificados corretamente como fake.
+0 logos fake classificados incorretamente como real.
 
-28 logos reales clasificados correctamente como real.
-16 logos reales clasificados incorrectamente como fake.
+28 logos reais classificados corretamente como real.
+16 logos reais classificados incorretamente como fake.
 ```
 
-Esto indica que el modelo aprendió bien los patrones de la clase `fake`, pero presentó mayor dificultad con la clase `real`.
+Isso indica que o modelo aprendeu bem os padrões da classe `fake`, mas apresentou maior dificuldade com a classe `real`.
 
-Una posible explicación es el desbalance del dataset, ya que había más imágenes falsas que reales.
+Uma possível explicação é o desbalanceamento do dataset, já que havia mais imagens falsas do que reais.
 
 ---
 
-## Pruebas con Imágenes Externas
+## Testes com Imagens Externas
 
-También se realizaron pruebas con imágenes externas al dataset.
+Também foram feitos testes com imagens externas ao dataset.
 
-Durante estas pruebas, se observó que el modelo siempre intenta clasificar la imagen como `real` o `fake`, incluso cuando la imagen no pertenece al dominio esperado.
+Durante esses testes, foi observado que o modelo sempre tenta classificar a imagem como `real` ou `fake`, mesmo quando a imagem não pertence ao domínio esperado.
 
-Esto ocurre porque el modelo fue entrenado solamente con dos clases. No posee una tercera categoría, como:
+Isso acontece porque o modelo foi treinado apenas com duas classes. Ele não possui uma terceira categoria, como:
 
 ```text
-no es logo
-imagen inválida
-no reconocido
+não é logo
+imagem inválida
+não reconhecido
 ```
 
-Por lo tanto, una limitación importante del modelo es que no debe ser utilizado como un verificador oficial de autenticidad de marcas.
+Portanto, uma limitação importante do modelo é que ele não deve ser usado como um verificador oficial de autenticidade de marcas.
 
 ---
 
-## Limitaciones del Modelo
+## Limitações do Modelo
 
-El modelo presentó buenos resultados en el conjunto de validación, pero posee algunas limitaciones:
+O modelo apresentou bons resultados no conjunto de validação, porém possui algumas limitações:
 
-* El dataset está desbalanceado.
-* Las imágenes tienen baja resolución.
-* El modelo solo clasifica imágenes entre `real` y `fake`.
-* El modelo no verifica si un logo es oficialmente verdadero o falso.
-* Imágenes muy diferentes a las del dataset pueden generar predicciones incorrectas.
-* El modelo no posee una clase para imágenes fuera del dominio, como paisajes, personas u objetos.
+* O dataset é desbalanceado.
+* As imagens possuem baixa resolução.
+* O modelo só classifica imagens entre `real` e `fake`.
+* O modelo não verifica se um logo é oficialmente verdadeiro ou falso.
+* Imagens muito diferentes das imagens do dataset podem gerar previsões incorretas.
+* O modelo não possui uma classe para imagens fora do domínio, como paisagens, pessoas ou objetos.
 
 ---
 
-## Posibles Mejoras Futuras
+## Possíveis Melhorias Futuras
 
-Algunas mejoras posibles para futuras versiones del proyecto serían:
+Algumas melhorias possíveis para versões futuras do projeto seriam:
 
-* Utilizar un dataset más grande.
-* Equilibrar mejor la cantidad de imágenes reales y falsas.
-* Utilizar imágenes con mayor resolución.
-* Crear una tercera clase para imágenes que no sean logos.
-* Probar modelos más avanzados de visión computacional.
+* Usar um dataset maior.
+* Equilibrar melhor a quantidade de imagens reais e falsas.
+* Utilizar imagens com maior resolução.
+* Criar uma terceira classe para imagens que não sejam logos.
+* Testar modelos mais avançados de visão computacional.
 * Aplicar técnicas de data augmentation.
-* Usar transfer learning con modelos preentrenados.
+* Usar transfer learning com modelos pré-treinados.
 
 ---
 
-## Conclusión
+## Conclusão
 
-El proyecto logró alcanzar su objetivo principal: entrenar un modelo de Inteligencia Artificial capaz de clasificar logos como reales o falsos con base en los patrones aprendidos en el dataset.
+O projeto conseguiu atingir seu objetivo principal: treinar um modelo de Inteligência Artificial capaz de classificar logos como reais ou falsos com base nos padrões aprendidos no dataset.
 
-El modelo alcanzó una precisión de validación cercana al 90%, lo que representa un resultado satisfactorio para una primera aproximación académica.
+O modelo alcançou uma acurácia de validação próxima de 90%, o que representa um resultado satisfatório para uma primeira abordagem acadêmica.
 
-Sin embargo, las pruebas también mostraron limitaciones importantes. El modelo no debe interpretarse como una herramienta definitiva para validar la autenticidad de marcas, sino como una demostración práctica de clasificación de imágenes utilizando redes neuronales convolucionales.
+Apesar disso, os testes também mostraram limitações importantes. O modelo não deve ser interpretado como uma ferramenta definitiva para validar autenticidade de marcas, mas sim como uma demonstração prática de classificação de imagens usando redes neurais convolucionais.
 
-El análisis de los errores y limitaciones hace que el proyecto sea más completo, ya que permite proponer mejoras futuras y comprender mejor los desafíos involucrados en el entrenamiento de modelos de IA.
+A análise dos erros e limitações torna o projeto mais completo, pois permite propor melhorias futuras e compreender melhor os desafios envolvidos no treinamento de modelos de IA.
 
 ---
 
-## Observación de Seguridad
+## Observação de Segurança
 
-Archivos de credenciales, como `kaggle.json` o tokens de la API de Kaggle, no deben ser enviados a GitHub.
+Arquivos de credenciais, como `kaggle.json` ou tokens da API do Kaggle, não devem ser enviados para o GitHub.
 
-En caso de utilizar la API de Kaggle, mantén estos archivos fuera del repositorio y agrégalos al `.gitignore`.
+Caso utilize a API do Kaggle, mantenha esses arquivos fora do repositório e adicione-os ao `.gitignore`.
 
-Ejemplo:
+Exemplo:
 
 ```text
 kaggle.json
@@ -245,8 +245,8 @@ kaggle.json
 
 ---
 
-## Estado del Proyecto
+## Status do Projeto
 
 ```text
-Finalizado para fines académicos.
+Finalizado para fins acadêmicos.
 ```
