@@ -231,19 +231,6 @@ A análise dos erros e limitações torna o projeto mais completo, pois permite 
 
 ---
 
-## Observação de Segurança
-
-Arquivos de credenciais, como `kaggle.json` ou tokens da API do Kaggle, não devem ser enviados para o GitHub.
-
-Caso utilize a API do Kaggle, mantenha esses arquivos fora do repositório e adicione-os ao `.gitignore`.
-
-Exemplo:
-
-```text
-kaggle.json
-```
-
----
 
 ## Status do Projeto
 
