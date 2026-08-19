@@ -235,5 +235,5 @@ A análise dos erros e limitações torna o projeto mais completo, pois permite 
 ## Status do Projeto
 
 ```text
-Finalizado para fins acadêmicos.
+Finalizado para fins acadêmicos...
 ```
